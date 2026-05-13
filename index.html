@@ -43,8 +43,8 @@ nav {
 }
 .nav-logo {
   display:flex; align-items:center; gap:10px;
-  font-family:'Syne',sans-serif; font-weight:800; font-size:20px;
-  letter-spacing:-0.5px;
+  font-family:'Syne',sans-serif; font-weight:700; font-size:20px;
+  letter-spacing:-0.3px;
 }
 .nav-logo-dot {
   width:8px; height:8px; border-radius:50%;
@@ -98,10 +98,10 @@ nav {
 }
 h1 {
   font-family:'Syne',sans-serif;
-  font-size:clamp(48px,8vw,96px);
-  font-weight:800;
-  line-height:1.0;
-  letter-spacing:-3px;
+  font-size:clamp(40px,6vw,80px);
+  font-weight:700;
+  line-height:1.05;
+  letter-spacing:-1.5px;
   margin-bottom:24px;
   animation:fadeUp .7s .1s ease both;
 }
@@ -240,9 +240,9 @@ section { padding:100px 24px; }
 }
 h2 {
   font-family:'Syne',sans-serif;
-  font-size:clamp(32px,5vw,52px);
-  font-weight:800; letter-spacing:-2px;
-  line-height:1.1;
+  font-size:clamp(28px,4vw,44px);
+  font-weight:700; letter-spacing:-1px;
+  line-height:1.15;
   margin-bottom:16px;
 }
 .section-sub {
@@ -282,7 +282,7 @@ h2 {
 }
 .feature-title {
   font-family:'Syne',sans-serif;
-  font-size:17px; font-weight:700;
+  font-size:17px; font-weight:600;
   margin-bottom:8px;
 }
 .feature-desc { font-size:14px; color:var(--text-sub); line-height:1.6; }
@@ -446,13 +446,13 @@ footer {
     PCLink
   </a>
   <div class="nav-links">
-    <a href="#features">Features</a>
-    <a href="#how">How it works</a>
-    <a href="#download">Download</a>
-    <a href="#faq">FAQ</a>
+    <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('features')?.scrollIntoView({behavior:'smooth'}),100)">Features</a>
+    <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('how')?.scrollIntoView({behavior:'smooth'}),100)">How it works</a>
+    <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('download')?.scrollIntoView({behavior:'smooth'}),100)">Download</a>
+    <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('faq')?.scrollIntoView({behavior:'smooth'}),100)">FAQ</a>
     <a href="#" onclick="showPage('support')">Support</a>
   </div>
-  <a href="#download" class="nav-cta">Get Started</a>
+  <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('download')?.scrollIntoView({behavior:'smooth'}),100)" class="nav-cta">Get Started</a>
 </nav>
 
 <!-- ══════════════ HOME PAGE ══════════════ -->
@@ -463,7 +463,7 @@ footer {
   <div class="hero-glow"></div>
   <div class="hero-badge">
     <div class="hero-badge-dot"></div>
-    Free to download — Windows &amp; iOS
+    Free to download — Windows, iOS &amp; Android
   </div>
   <h1>Your PC,<br/><span>in your pocket.</span></h1>
   <p class="hero-sub">Wake, control, and monitor your Windows PC from anywhere — all from a beautifully simple app on your phone.</p>
@@ -478,16 +478,18 @@ footer {
   </div>
   <div class="store-badges">
     <div class="store-badge">
-      <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
       <div>
-        <div style="font-size:13px;font-weight:600;color:var(--text)">App Store</div>
+        <div style="font-size:11px;color:var(--text-muted);line-height:1">Download on the</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);line-height:1.3">App Store</div>
         <div class="store-badge-coming">Coming soon</div>
       </div>
     </div>
     <div class="store-badge">
-      <svg viewBox="0 0 24 24"><path d="M3.18 23.76c.3.17.65.19.98.06l12.47-6.99-2.54-2.54-10.91 9.47zM.44 1.05C.17 1.36 0 1.83 0 2.44v19.12c0 .61.17 1.08.44 1.39l.07.07 10.71-10.71v-.25L.51.98.44 1.05zM20.55 9.56l-2.84-1.6-2.86 2.86 2.86 2.86 2.86-1.61c.82-.46.82-1.21-.02-1.51zM3.18.24L15.65 7.22l-2.54 2.54L2.2.3c.33-.14.69-.12.98-.06z"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24"><defs><linearGradient id="gp1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#00c6ff"/><stop offset="100%" style="stop-color:#0072ff"/></linearGradient><linearGradient id="gp2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#00e676"/><stop offset="100%" style="stop-color:#00b248"/></linearGradient><linearGradient id="gp3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#ff6d00"/><stop offset="100%" style="stop-color:#ffab00"/></linearGradient><linearGradient id="gp4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f44336"/><stop offset="100%" style="stop-color:#e91e63"/></linearGradient></defs><path d="M3.18 23.76c.3.17.65.19.98.06l12.47-6.99-2.54-2.54-10.91 9.47z" fill="url(#gp2)"/><path d="M.44 1.05C.17 1.36 0 1.83 0 2.44v19.12c0 .61.17 1.08.44 1.39l.07.07 10.71-10.71v-.25L.51.98.44 1.05z" fill="url(#gp1)"/><path d="M20.55 9.56l-2.84-1.6-2.86 2.86 2.86 2.86 2.86-1.61c.82-.46.82-1.21-.02-1.51z" fill="url(#gp3)"/><path d="M3.18.24L15.65 7.22l-2.54 2.54L2.2.3c.33-.14.69-.12.98-.06z" fill="url(#gp4)"/></svg>
       <div>
-        <div style="font-size:13px;font-weight:600;color:var(--text)">Google Play</div>
+        <div style="font-size:11px;color:var(--text-muted);line-height:1">Get it on</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text);line-height:1.3">Google Play</div>
         <div class="store-badge-coming">Coming soon</div>
       </div>
     </div>
@@ -605,7 +607,7 @@ footer {
       <div class="step">
         <div class="step-num">01</div>
         <div class="step-title">Download the Agent</div>
-        <div class="step-desc">Install the free PCLink Agent on your Windows PC. It runs silently in your system tray — no setup wizard, no account required.</div>
+        <div class="step-desc">Install the free PCLink Agent on your Windows PC. It runs silently in your system tray — no account required.</div>
       </div>
       <div class="step">
         <div class="step-num">02</div>
@@ -719,7 +721,7 @@ footer {
           Is the agent safe to install?
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-a">Yes. The agent is open source — you can inspect every line of code on GitHub. It runs in your system tray, uses minimal resources, and only responds to commands from your paired phone using your unique security token.</div>
+        <div class="faq-a">Yes. The agent runs in your system tray, uses minimal resources, and only responds to commands from your paired phone using your unique security token. It has no access to your files or system outside of the commands you explicitly send from your phone.</div>
       </div>
     </div>
   </div>
@@ -743,12 +745,6 @@ footer {
     <p>If you're still having trouble, reach out and we'll get back to you as soon as possible.</p>
     <a href="mailto:support@pclink.app" class="btn-primary" style="display:inline-flex;margin-top:8px;font-size:15px;padding:12px 24px">
       support@pclink.app
-    </a>
-
-    <h2>Open Source</h2>
-    <p>PCLink is open source. You can browse the code, report issues, or contribute on GitHub.</p>
-    <a href="https://github.com/laikxn/PCLink" class="btn-secondary" style="display:inline-flex;margin-top:8px;font-size:15px;padding:12px 24px" target="_blank">
-      View on GitHub →
     </a>
   </div>
 </div>
@@ -810,10 +806,10 @@ footer {
     </div>
     <div>
       <div class="footer-links">
-        <a href="#features">Features</a>
-        <a href="#how">How it works</a>
-        <a href="#download">Download</a>
-        <a href="#faq">FAQ</a>
+        <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('features')?.scrollIntoView({behavior:'smooth'}),100)">Features</a>
+        <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('how')?.scrollIntoView({behavior:'smooth'}),100)">How it works</a>
+        <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('download')?.scrollIntoView({behavior:'smooth'}),100)">Download</a>
+        <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('faq')?.scrollIntoView({behavior:'smooth'}),100)">FAQ</a>
       </div>
     </div>
     <div>
@@ -821,7 +817,6 @@ footer {
         <a href="#" onclick="showPage('support')">Support</a>
         <a href="#" onclick="showPage('privacy')">Privacy Policy</a>
         <a href="#" onclick="showPage('terms')">Terms of Use</a>
-        <a href="https://github.com/laikxn/PCLink" target="_blank">GitHub</a>
       </div>
     </div>
   </div>
