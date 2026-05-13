@@ -6,7 +6,7 @@
 <title>PCLink — Control Your PC From Your Phone</title>
 <meta name="description" content="PCLink lets you wake, control, and monitor your Windows PC from your iPhone or Android. Free to download."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
 <style>
 :root {
   --bg:        #080c11;
@@ -43,8 +43,8 @@ nav {
 }
 .nav-logo {
   display:flex; align-items:center; gap:10px;
-  font-family:'Syne',sans-serif; font-weight:700; font-size:20px;
-  letter-spacing:-0.3px;
+  font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:19px;
+  letter-spacing:-0.2px;
 }
 .nav-logo-dot {
   width:8px; height:8px; border-radius:50%;
@@ -97,11 +97,11 @@ nav {
   50% { opacity:.4; }
 }
 h1 {
-  font-family:'Syne',sans-serif;
-  font-size:clamp(40px,6vw,80px);
-  font-weight:700;
-  line-height:1.05;
-  letter-spacing:-1.5px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(36px,5.5vw,72px);
+  font-weight:600;
+  line-height:1.1;
+  letter-spacing:-0.5px;
   margin-bottom:24px;
   animation:fadeUp .7s .1s ease both;
 }
@@ -239,10 +239,10 @@ section { padding:100px 24px; }
   margin-bottom:16px;
 }
 h2 {
-  font-family:'Syne',sans-serif;
-  font-size:clamp(28px,4vw,44px);
-  font-weight:700; letter-spacing:-1px;
-  line-height:1.15;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(24px,3.5vw,40px);
+  font-weight:600; letter-spacing:-0.3px;
+  line-height:1.2;
   margin-bottom:16px;
 }
 .section-sub {
@@ -281,8 +281,8 @@ h2 {
   font-size:22px; margin-bottom:16px;
 }
 .feature-title {
-  font-family:'Syne',sans-serif;
-  font-size:17px; font-weight:600;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:16px; font-weight:600;
   margin-bottom:8px;
 }
 .feature-desc { font-size:14px; color:var(--text-sub); line-height:1.6; }
@@ -304,14 +304,16 @@ h2 {
 }
 .step:hover { transform:translateY(-4px); border-color:rgba(0,122,255,.3); }
 .step-num {
-  font-family:'Syne',sans-serif;
-  font-size:48px; font-weight:800;
-  color:rgba(0,122,255,.15);
-  line-height:1; margin-bottom:16px;
+  width:32px; height:32px; border-radius:50%;
+  background:rgba(0,122,255,0.12);
+  border:1px solid rgba(0,122,255,0.25);
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:600; color:var(--accent);
+  margin-bottom:16px; flex-shrink:0;
 }
 .step-title {
-  font-family:'Syne',sans-serif;
-  font-size:18px; font-weight:700;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:17px; font-weight:600;
   margin-bottom:8px;
 }
 .step-desc { font-size:14px; color:var(--text-sub); line-height:1.6; }
@@ -339,7 +341,7 @@ h2 {
   display:block;
 }
 .download-card-title {
-  font-family:'Syne',sans-serif;
+  font-family:'Plus Jakarta Sans',sans-serif;
   font-size:22px; font-weight:800;
   margin-bottom:8px;
 }
@@ -401,7 +403,7 @@ footer {
   justify-content:space-between; gap:32px;
 }
 .footer-brand {
-  font-family:'Syne',sans-serif;
+  font-family:'Plus Jakarta Sans',sans-serif;
   font-weight:800; font-size:18px;
   margin-bottom:8px;
 }
@@ -482,7 +484,6 @@ footer {
       <div>
         <div style="font-size:11px;color:var(--text-muted);line-height:1">Download on the</div>
         <div style="font-size:14px;font-weight:600;color:var(--text);line-height:1.3">App Store</div>
-        <div class="store-badge-coming">Coming soon</div>
       </div>
     </div>
     <div class="store-badge">
@@ -490,7 +491,6 @@ footer {
       <div>
         <div style="font-size:11px;color:var(--text-muted);line-height:1">Get it on</div>
         <div style="font-size:14px;font-weight:600;color:var(--text);line-height:1.3">Google Play</div>
-        <div class="store-badge-coming">Coming soon</div>
       </div>
     </div>
   </div>
@@ -502,42 +502,75 @@ footer {
       <div class="phone-screen">
         <div class="phone-status-bar">
           <span>9:41</span>
-          <span>●●●</span>
+          <span style="display:flex;gap:4px;align-items:center">
+            <span style="font-size:9px">●●●●</span>
+            <span style="font-size:9px">WiFi</span>
+            <span style="font-size:9px">100%</span>
+          </span>
         </div>
         <div class="phone-content">
           <div class="phone-top-bar">
             <span class="phone-title">PCLink</span>
-            <span style="font-size:10px;color:rgba(255,255,255,.3)">⚙</span>
+            <div style="width:20px;height:20px;border-radius:5px;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;font-size:11px">⚙</div>
           </div>
+          <!-- Device card -->
           <div class="phone-card">
             <div class="phone-card-dot"></div>
-            <div style="font-size:18px;margin-bottom:6px;">🖥</div>
+            <div style="width:32px;height:32px;border-radius:9px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:8px">
+              <div style="width:16px;height:12px;border:2px solid white;border-radius:2px;position:relative">
+                <div style="position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:6px;height:3px;background:white;border-radius:0 0 1px 1px"></div>
+              </div>
+            </div>
             <div class="phone-card-name">GAMING PC</div>
             <div class="phone-card-status">● Online</div>
           </div>
+          <!-- Action grid -->
           <div class="phone-grid">
             <div class="phone-tile">
-              <div class="phone-tile-icon" style="background:rgba(34,197,94,.15)">⚡</div>
+              <div class="phone-tile-icon" style="background:rgba(34,197,94,.15)">
+                <div style="width:10px;height:10px;border:2px solid #22c55e;border-radius:50%;position:relative"><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:7px solid #22c55e;margin-top:-2px"></div></div>
+              </div>
               <div class="phone-tile-label">Wake PC</div>
             </div>
             <div class="phone-tile">
-              <div class="phone-tile-icon" style="background:rgba(239,68,68,.15)">⏻</div>
+              <div class="phone-tile-icon" style="background:rgba(239,68,68,.15)">
+                <div style="width:10px;height:10px;border:2px solid #ef4444;border-radius:50%"></div>
+              </div>
               <div class="phone-tile-label">Shutdown</div>
             </div>
             <div class="phone-tile">
-              <div class="phone-tile-icon" style="background:rgba(168,85,247,.15)">🎵</div>
+              <div class="phone-tile-icon" style="background:rgba(168,85,247,.15)">
+                <div style="width:12px;height:8px;border:1.5px solid #a855f7;border-radius:2px;position:relative"><div style="position:absolute;left:-4px;top:50%;transform:translateY(-50%);width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-right:4px solid #a855f7"></div></div>
+              </div>
               <div class="phone-tile-label">Media</div>
             </div>
             <div class="phone-tile">
-              <div class="phone-tile-icon" style="background:rgba(0,122,255,.15)">📋</div>
+              <div class="phone-tile-icon" style="background:rgba(0,122,255,.15)">
+                <div style="width:10px;height:10px;border:1.5px solid #007aff;border-radius:2px;display:flex;align-items:center;justify-content:center"><div style="width:6px;height:1.5px;background:#007aff"></div></div>
+              </div>
               <div class="phone-tile-label">Clipboard</div>
+            </div>
+          </div>
+          <!-- Stats bar -->
+          <div style="background:#1c2130;border-radius:10px;padding:8px 10px;margin-top:2px">
+            <div style="font-size:8px;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:500">SYSTEM</div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:8px;color:rgba(255,255,255,.4);width:20px">CPU</span>
+                <div style="flex:1;height:3px;background:rgba(255,255,255,.08);border-radius:2px"><div style="width:42%;height:100%;background:#007aff;border-radius:2px"></div></div>
+                <span style="font-size:8px;color:rgba(255,255,255,.4)">42%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:8px;color:rgba(255,255,255,.4);width:20px">RAM</span>
+                <div style="flex:1;height:3px;background:rgba(255,255,255,.08);border-radius:2px"><div style="width:67%;height:100%;background:#a855f7;border-radius:2px"></div></div>
+                <span style="font-size:8px;color:rgba(255,255,255,.4)">67%</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Glow under phone -->
-    <div style="position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);width:180px;height:60px;background:radial-gradient(ellipse,rgba(0,122,255,.25),transparent 70%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);width:180px;height:60px;background:radial-gradient(ellipse,rgba(0,122,255,.2),transparent 70%);pointer-events:none;"></div>
   </div>
 </section>
 
@@ -605,22 +638,22 @@ footer {
     <p class="section-sub reveal">No complicated network setup. No port forwarding required for basic use. Just download, scan, and go.</p>
     <div class="steps reveal">
       <div class="step">
-        <div class="step-num">01</div>
+        <div class="step-num">1</div>
         <div class="step-title">Download the Agent</div>
         <div class="step-desc">Install the free PCLink Agent on your Windows PC. It runs silently in your system tray — no account required.</div>
       </div>
       <div class="step">
-        <div class="step-num">02</div>
+        <div class="step-num">2</div>
         <div class="step-title">Open the App</div>
         <div class="step-desc">Download PCLink on your iPhone or Android. Tap the + button to add a new device.</div>
       </div>
       <div class="step">
-        <div class="step-num">03</div>
+        <div class="step-num">3</div>
         <div class="step-title">Scan the QR Code</div>
         <div class="step-desc">A pairing window appears on your PC automatically. Scan the QR code with your phone — they're connected instantly.</div>
       </div>
       <div class="step">
-        <div class="step-num">04</div>
+        <div class="step-num">4</div>
         <div class="step-title">Control from anywhere</div>
         <div class="step-desc">That's it. Your PC is now accessible from your phone over WiFi, mobile data, or any network — securely and privately.</div>
       </div>
@@ -653,10 +686,10 @@ footer {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--text-sub)"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           <div>
             <div style="font-size:13px;font-weight:600;color:var(--text)">App Store</div>
-            <div class="store-badge-coming">Coming soon</div>
+            
           </div>
         </div>
-        <div class="download-card-meta">iOS 16+ · Coming soon</div>
+        <div class="download-card-meta">iOS 16+</div>
       </div>
       <div class="download-card">
         <span class="download-card-icon">🤖</span>
@@ -666,10 +699,10 @@ footer {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--text-sub)"><path d="M3.18 23.76c.3.17.65.19.98.06l12.47-6.99-2.54-2.54-10.91 9.47zM.44 1.05C.17 1.36 0 1.83 0 2.44v19.12c0 .61.17 1.08.44 1.39l.07.07 10.71-10.71v-.25L.51.98.44 1.05zM20.55 9.56l-2.84-1.6-2.86 2.86 2.86 2.86 2.86-1.61c.82-.46.82-1.21-.02-1.51zM3.18.24L15.65 7.22l-2.54 2.54L2.2.3c.33-.14.69-.12.98-.06z"/></svg>
           <div>
             <div style="font-size:13px;font-weight:600;color:var(--text)">Google Play</div>
-            <div class="store-badge-coming">Coming soon</div>
+            
           </div>
         </div>
-        <div class="download-card-meta">Android 10+ · Coming soon</div>
+        <div class="download-card-meta">Android 10+</div>
       </div>
     </div>
   </div>
