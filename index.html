@@ -4,7 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>PCLink — Control Your PC From Your Phone</title>
-<meta name="description" content="PCLink lets you wake, control, and monitor your Windows PC from your iPhone or Android. Free to download."/>
+<meta name="description" content="PCLink lets you wake, control, and monitor your Windows PC from anywhere — all from a simple app on your phone. Free to download."/>
+<link rel="icon" type="image/png" href="pclink-icon.png"/>
+<link rel="apple-touch-icon" href="pclink-icon.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
 <style>
@@ -278,7 +280,7 @@ h2 {
 .feature-icon {
   width:44px; height:44px; border-radius:12px;
   display:flex; align-items:center; justify-content:center;
-  font-size:22px; margin-bottom:16px;
+  margin-bottom:16px;
 }
 .feature-title {
   font-family:'Plus Jakarta Sans',sans-serif;
@@ -468,7 +470,7 @@ footer {
     Free to download — Windows, iOS &amp; Android
   </div>
   <h1>Your PC,<br/><span>in your pocket.</span></h1>
-  <p class="hero-sub">Wake, control, and monitor your Windows PC from anywhere — all from a beautifully simple app on your phone.</p>
+  <p class="hero-sub">Wake, control, and monitor your Windows PC from anywhere — all from a simple app on your phone.</p>
   <div class="hero-actions">
     <a href="https://github.com/laikxn/PCLink/releases/latest" class="btn-primary">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -582,47 +584,65 @@ footer {
     <p class="section-sub reveal">A full suite of remote PC controls, built into one clean app.</p>
     <div class="features-grid reveal">
       <div class="feature-card" style="--card-glow:rgba(34,197,94,.08)">
-        <div class="feature-icon" style="background:rgba(34,197,94,.12)">⚡</div>
+        <div class="feature-icon" style="background:rgba(34,197,94,.12)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
         <div class="feature-title">Wake on LAN</div>
         <div class="feature-desc">Wake your PC from anywhere — at home or across the world. No hardware required beyond your existing router.</div>
       </div>
       <div class="feature-card" style="--card-glow:rgba(239,68,68,.08)">
-        <div class="feature-icon" style="background:rgba(239,68,68,.12)">⏻</div>
+        <div class="feature-icon" style="background:rgba(239,68,68,.12)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+        </div>
         <div class="feature-title">Power Control</div>
         <div class="feature-desc">Shutdown, restart, sleep, or lock your PC remotely with one tap. Confirm before executing so you never do it by accident.</div>
       </div>
       <div class="feature-card" style="--card-glow:rgba(168,85,247,.08)">
-        <div class="feature-icon" style="background:rgba(168,85,247,.12)">🎵</div>
+        <div class="feature-icon" style="background:rgba(168,85,247,.12)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
         <div class="feature-title">Media Controls</div>
         <div class="feature-desc">Play, pause, skip, and control volume. See what's playing with album art — works with Spotify, YouTube, and any media player.</div>
       </div>
       <div class="feature-card" style="--card-glow:rgba(245,158,11,.08)">
-        <div class="feature-icon" style="background:rgba(245,158,11,.12)">📋</div>
+        <div class="feature-icon" style="background:rgba(245,158,11,.12)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+        </div>
         <div class="feature-title">Clipboard Sync</div>
         <div class="feature-desc">Copy something on your phone, paste it on your PC. Or grab your PC's clipboard from your phone — instant, bidirectional sync.</div>
       </div>
       <div class="feature-card" style="--card-glow:rgba(6,182,212,.08)">
-        <div class="feature-icon" style="background:rgba(6,182,212,.12)">📁</div>
+        <div class="feature-icon" style="background:rgba(6,182,212,.12)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        </div>
         <div class="feature-title">File Browser</div>
         <div class="feature-desc">Browse, search, and download files from your PC directly to your phone. No cloud required — all local.</div>
       </div>
       <div class="feature-card" style="--card-glow:rgba(0,122,255,.08)">
-        <div class="feature-icon" style="background:rgba(0,122,255,.12)">📊</div>
+        <div class="feature-icon" style="background:rgba(0,122,255,.12)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#007aff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
         <div class="feature-title">System Monitor</div>
         <div class="feature-desc">Live CPU, RAM, GPU, and disk stats streamed to your phone. Know what your PC is doing without being at your desk.</div>
       </div>
       <div class="feature-card" style="--card-glow:rgba(239,68,68,.08)">
-        <div class="feature-icon" style="background:rgba(239,68,68,.12)">📸</div>
+        <div class="feature-icon" style="background:rgba(239,68,68,.12)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
         <div class="feature-title">Screenshot</div>
         <div class="feature-desc">Capture your PC screen and view it on your phone instantly. Tap to zoom, pinch to inspect, save to camera roll.</div>
       </div>
       <div class="feature-card" style="--card-glow:rgba(34,197,94,.08)">
-        <div class="feature-icon" style="background:rgba(34,197,94,.12)">🤖</div>
+        <div class="feature-icon" style="background:rgba(34,197,94,.12)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
         <div class="feature-title">Scheduled Events</div>
         <div class="feature-desc">Set your PC to wake up, run apps, and shut down on a schedule. Automate your whole workflow without lifting a finger.</div>
       </div>
       <div class="feature-card" style="--card-glow:rgba(249,115,22,.08)">
-        <div class="feature-icon" style="background:rgba(249,115,22,.12)">🔊</div>
+        <div class="feature-icon" style="background:rgba(249,115,22,.12)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </div>
         <div class="feature-title">Soundboard</div>
         <div class="feature-desc">Play audio files through your PC speakers from your phone. Great for streaming, content creation, or just messing around.</div>
       </div>
