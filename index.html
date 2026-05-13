@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PCLink — Control Your PC From Your Phone</title>
+<meta name="description" content="PCLink lets you wake, control, and monitor your Windows PC from your iPhone or Android. Free to download."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:        #080c11;
+  --surface:   #0f1520;
+  --surface2:  #151e2d;
+  --border:    rgba(255,255,255,0.07);
+  --accent:    #007aff;
+  --accent2:   #22c55e;
+  --accent3:   #a855f7;
+  --text:      #f0f4ff;
+  --text-sub:  #8899bb;
+  --text-muted:#4a5a78;
+  --glow:      rgba(0,122,255,0.15);
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+a { color:inherit; text-decoration:none; }
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 48px; height:64px;
+  background:rgba(8,12,17,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo {
+  display:flex; align-items:center; gap:10px;
+  font-family:'Syne',sans-serif; font-weight:800; font-size:20px;
+  letter-spacing:-0.5px;
+}
+.nav-logo-dot {
+  width:8px; height:8px; border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 10px var(--accent);
+}
+.nav-links {
+  display:flex; align-items:center; gap:36px;
+  font-size:14px; font-weight:500; color:var(--text-sub);
+}
+.nav-links a:hover { color:var(--text); }
+.nav-cta {
+  background:var(--accent); color:#fff;
+  padding:8px 20px; border-radius:8px;
+  font-size:14px; font-weight:600;
+  transition:opacity .2s;
+}
+.nav-cta:hover { opacity:.85; }
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center;
+  padding:120px 24px 80px;
+  position:relative; overflow:hidden;
+}
+.hero-glow {
+  position:absolute; top:10%; left:50%; transform:translateX(-50%);
+  width:800px; height:500px;
+  background:radial-gradient(ellipse at center, rgba(0,122,255,0.12) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(0,122,255,0.1); border:1px solid rgba(0,122,255,0.25);
+  border-radius:100px; padding:6px 16px;
+  font-size:13px; font-weight:500; color:var(--accent);
+  margin-bottom:28px;
+  animation:fadeUp .6s ease both;
+}
+.hero-badge-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:var(--accent2);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1; }
+  50% { opacity:.4; }
+}
+h1 {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(48px,8vw,96px);
+  font-weight:800;
+  line-height:1.0;
+  letter-spacing:-3px;
+  margin-bottom:24px;
+  animation:fadeUp .7s .1s ease both;
+}
+h1 span { color:var(--accent); }
+.hero-sub {
+  font-size:clamp(16px,2vw,20px);
+  color:var(--text-sub);
+  max-width:520px;
+  line-height:1.7;
+  margin-bottom:48px;
+  font-weight:300;
+  animation:fadeUp .7s .2s ease both;
+}
+.hero-actions {
+  display:flex; flex-wrap:wrap; gap:14px; justify-content:center;
+  animation:fadeUp .7s .3s ease both;
+}
+.btn-primary {
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--accent); color:#fff;
+  padding:14px 28px; border-radius:12px;
+  font-size:16px; font-weight:600;
+  transition:transform .2s, box-shadow .2s;
+  box-shadow:0 0 30px rgba(0,122,255,0.3);
+}
+.btn-primary:hover {
+  transform:translateY(-2px);
+  box-shadow:0 8px 40px rgba(0,122,255,0.4);
+}
+.btn-secondary {
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--surface2); color:var(--text);
+  border:1px solid var(--border);
+  padding:14px 28px; border-radius:12px;
+  font-size:16px; font-weight:500;
+  transition:transform .2s, border-color .2s;
+}
+.btn-secondary:hover {
+  transform:translateY(-2px);
+  border-color:rgba(255,255,255,0.15);
+}
+.store-badges {
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+  margin-top:16px;
+  animation:fadeUp .7s .4s ease both;
+}
+.store-badge {
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--surface); border:1px solid var(--border);
+  padding:10px 20px; border-radius:10px;
+  font-size:13px; color:var(--text-sub);
+  transition:border-color .2s;
+}
+.store-badge:hover { border-color:rgba(255,255,255,0.15); }
+.store-badge svg { width:18px; height:18px; fill:var(--text-sub); }
+.store-badge-coming { font-size:11px; color:var(--text-muted); margin-top:1px; }
+
+/* ── PHONE MOCKUP ── */
+.hero-visual {
+  margin-top:80px;
+  position:relative;
+  animation:fadeUp .8s .5s ease both;
+}
+.phone-frame {
+  width:260px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:44px;
+  padding:12px;
+  box-shadow:0 40px 120px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+  position:relative;
+}
+.phone-screen {
+  background:#0b0f14;
+  border-radius:34px;
+  overflow:hidden;
+  aspect-ratio:9/19;
+  display:flex; flex-direction:column;
+}
+.phone-status-bar {
+  height:36px;
+  background:#0b0f14;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 20px;
+  font-size:11px; font-weight:600;
+}
+.phone-content { flex:1; padding:12px; display:flex; flex-direction:column; gap:8px; }
+.phone-top-bar {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:4px 0 8px;
+}
+.phone-title { font-size:13px; font-weight:700; letter-spacing:-.3px; }
+.phone-card {
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  border-radius:16px; padding:14px;
+  position:relative; overflow:hidden;
+}
+.phone-card-name { font-size:11px; font-weight:700; }
+.phone-card-status { font-size:9px; opacity:.75; margin-top:2px; }
+.phone-card-dot {
+  position:absolute; top:14px; right:14px;
+  width:7px; height:7px; border-radius:50%;
+  background:#fff; opacity:.9;
+}
+.phone-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:6px;
+  margin-top:4px;
+}
+.phone-tile {
+  background:#1c2130;
+  border-radius:12px; padding:10px 10px 8px;
+  display:flex; flex-direction:column; gap:4px;
+}
+.phone-tile-icon {
+  width:22px; height:22px; border-radius:7px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px;
+}
+.phone-tile-label { font-size:9px; font-weight:600; color:rgba(255,255,255,.75); }
+.phone-tile-sub { font-size:8px; color:rgba(255,255,255,.35); }
+.phone-notch {
+  position:absolute; top:12px; left:50%; transform:translateX(-50%);
+  width:80px; height:24px;
+  background:#080c11;
+  border-radius:0 0 16px 16px;
+  z-index:2;
+}
+
+/* ── SECTION COMMON ── */
+section { padding:100px 24px; }
+.section-inner { max-width:1080px; margin:0 auto; }
+.section-label {
+  font-size:12px; font-weight:600; letter-spacing:2px;
+  text-transform:uppercase; color:var(--accent);
+  margin-bottom:16px;
+}
+h2 {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(32px,5vw,52px);
+  font-weight:800; letter-spacing:-2px;
+  line-height:1.1;
+  margin-bottom:16px;
+}
+.section-sub {
+  font-size:18px; color:var(--text-sub);
+  font-weight:300; max-width:560px;
+  line-height:1.7; margin-bottom:64px;
+}
+
+/* ── FEATURES ── */
+#features { background:var(--bg); }
+.features-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:2px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  overflow:hidden;
+}
+.feature-card {
+  background:var(--surface);
+  padding:32px;
+  transition:background .2s;
+  position:relative; overflow:hidden;
+}
+.feature-card::before {
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(135deg, var(--card-glow,transparent), transparent);
+  opacity:0; transition:opacity .3s;
+}
+.feature-card:hover { background:var(--surface2); }
+.feature-card:hover::before { opacity:1; }
+.feature-icon {
+  width:44px; height:44px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; margin-bottom:16px;
+}
+.feature-title {
+  font-family:'Syne',sans-serif;
+  font-size:17px; font-weight:700;
+  margin-bottom:8px;
+}
+.feature-desc { font-size:14px; color:var(--text-sub); line-height:1.6; }
+
+/* ── HOW IT WORKS ── */
+#how { background:var(--surface); }
+.steps {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:24px;
+}
+.step {
+  position:relative;
+  padding:32px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:20px;
+  transition:transform .2s, border-color .2s;
+}
+.step:hover { transform:translateY(-4px); border-color:rgba(0,122,255,.3); }
+.step-num {
+  font-family:'Syne',sans-serif;
+  font-size:48px; font-weight:800;
+  color:rgba(0,122,255,.15);
+  line-height:1; margin-bottom:16px;
+}
+.step-title {
+  font-family:'Syne',sans-serif;
+  font-size:18px; font-weight:700;
+  margin-bottom:8px;
+}
+.step-desc { font-size:14px; color:var(--text-sub); line-height:1.6; }
+.step-connector {
+  display:none;
+}
+
+/* ── DOWNLOAD ── */
+#download { background:var(--bg); }
+.download-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:20px;
+}
+.download-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:36px;
+  transition:transform .2s, border-color .2s;
+}
+.download-card:hover { transform:translateY(-4px); border-color:rgba(255,255,255,.12); }
+.download-card-icon {
+  font-size:36px; margin-bottom:20px;
+  display:block;
+}
+.download-card-title {
+  font-family:'Syne',sans-serif;
+  font-size:22px; font-weight:800;
+  margin-bottom:8px;
+}
+.download-card-desc { font-size:14px; color:var(--text-sub); line-height:1.6; margin-bottom:24px; }
+.download-card-meta { font-size:12px; color:var(--text-muted); margin-top:12px; }
+
+/* ── FAQ ── */
+#faq { background:var(--surface); }
+.faq-list { display:flex; flex-direction:column; gap:2px; }
+.faq-item {
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  transition:border-color .2s;
+}
+.faq-item:hover { border-color:rgba(255,255,255,.1); }
+.faq-q {
+  width:100%; text-align:left;
+  padding:22px 24px;
+  font-size:16px; font-weight:500;
+  color:var(--text);
+  background:transparent; border:none; cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center; gap:16px;
+  font-family:'DM Sans',sans-serif;
+}
+.faq-q:hover { color:#fff; }
+.faq-chevron {
+  width:20px; height:20px; flex-shrink:0;
+  color:var(--text-muted); transition:transform .3s;
+}
+.faq-item.open .faq-chevron { transform:rotate(180deg); }
+.faq-a {
+  max-height:0; overflow:hidden;
+  transition:max-height .35s ease, padding .35s ease;
+  font-size:15px; color:var(--text-sub); line-height:1.7;
+  padding:0 24px;
+}
+.faq-item.open .faq-a { max-height:300px; padding:0 24px 22px; }
+
+/* ── PRIVACY / TERMS PAGES ── */
+.page { display:none; padding:100px 24px 80px; min-height:100vh; }
+.page.active { display:block; }
+.page-inner { max-width:720px; margin:0 auto; }
+.page-inner h1 { font-size:40px; margin-bottom:8px; letter-spacing:-1px; }
+.page-inner .updated { color:var(--text-muted); font-size:14px; margin-bottom:48px; }
+.page-inner h2 { font-size:22px; font-weight:700; letter-spacing:-0.5px; margin:36px 0 10px; }
+.page-inner p { font-size:15px; color:var(--text-sub); line-height:1.8; margin-bottom:16px; }
+
+/* ── FOOTER ── */
+footer {
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  padding:48px 24px 36px;
+}
+.footer-inner {
+  max-width:1080px; margin:0 auto;
+  display:flex; flex-wrap:wrap;
+  justify-content:space-between; gap:32px;
+}
+.footer-brand {
+  font-family:'Syne',sans-serif;
+  font-weight:800; font-size:18px;
+  margin-bottom:8px;
+}
+.footer-tagline { font-size:13px; color:var(--text-muted); }
+.footer-links { display:flex; flex-direction:column; gap:10px; }
+.footer-links a { font-size:14px; color:var(--text-sub); transition:color .2s; }
+.footer-links a:hover { color:var(--text); }
+.footer-bottom {
+  max-width:1080px; margin:32px auto 0;
+  padding-top:24px;
+  border-top:1px solid var(--border);
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;
+  font-size:13px; color:var(--text-muted);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.reveal {
+  opacity:0; transform:translateY(30px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px) {
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  h1 { letter-spacing:-2px; }
+  section { padding:70px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" onclick="showPage('home')" class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    PCLink
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#download">Download</a>
+    <a href="#faq">FAQ</a>
+    <a href="#" onclick="showPage('support')">Support</a>
+  </div>
+  <a href="#download" class="nav-cta">Get Started</a>
+</nav>
+
+<!-- ══════════════ HOME PAGE ══════════════ -->
+<div id="page-home" class="page active">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    Free to download — Windows &amp; iOS
+  </div>
+  <h1>Your PC,<br/><span>in your pocket.</span></h1>
+  <p class="hero-sub">Wake, control, and monitor your Windows PC from anywhere — all from a beautifully simple app on your phone.</p>
+  <div class="hero-actions">
+    <a href="https://github.com/laikxn/PCLink/releases/latest" class="btn-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Agent for Windows
+    </a>
+    <a href="#how" class="btn-secondary">
+      How it works →
+    </a>
+  </div>
+  <div class="store-badges">
+    <div class="store-badge">
+      <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:var(--text)">App Store</div>
+        <div class="store-badge-coming">Coming soon</div>
+      </div>
+    </div>
+    <div class="store-badge">
+      <svg viewBox="0 0 24 24"><path d="M3.18 23.76c.3.17.65.19.98.06l12.47-6.99-2.54-2.54-10.91 9.47zM.44 1.05C.17 1.36 0 1.83 0 2.44v19.12c0 .61.17 1.08.44 1.39l.07.07 10.71-10.71v-.25L.51.98.44 1.05zM20.55 9.56l-2.84-1.6-2.86 2.86 2.86 2.86 2.86-1.61c.82-.46.82-1.21-.02-1.51zM3.18.24L15.65 7.22l-2.54 2.54L2.2.3c.33-.14.69-.12.98-.06z"/></svg>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:var(--text)">Google Play</div>
+        <div class="store-badge-coming">Coming soon</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phone mockup -->
+  <div class="hero-visual">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="phone-status-bar">
+          <span>9:41</span>
+          <span>●●●</span>
+        </div>
+        <div class="phone-content">
+          <div class="phone-top-bar">
+            <span class="phone-title">PCLink</span>
+            <span style="font-size:10px;color:rgba(255,255,255,.3)">⚙</span>
+          </div>
+          <div class="phone-card">
+            <div class="phone-card-dot"></div>
+            <div style="font-size:18px;margin-bottom:6px;">🖥</div>
+            <div class="phone-card-name">GAMING PC</div>
+            <div class="phone-card-status">● Online</div>
+          </div>
+          <div class="phone-grid">
+            <div class="phone-tile">
+              <div class="phone-tile-icon" style="background:rgba(34,197,94,.15)">⚡</div>
+              <div class="phone-tile-label">Wake PC</div>
+            </div>
+            <div class="phone-tile">
+              <div class="phone-tile-icon" style="background:rgba(239,68,68,.15)">⏻</div>
+              <div class="phone-tile-label">Shutdown</div>
+            </div>
+            <div class="phone-tile">
+              <div class="phone-tile-icon" style="background:rgba(168,85,247,.15)">🎵</div>
+              <div class="phone-tile-label">Media</div>
+            </div>
+            <div class="phone-tile">
+              <div class="phone-tile-icon" style="background:rgba(0,122,255,.15)">📋</div>
+              <div class="phone-tile-label">Clipboard</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Glow under phone -->
+    <div style="position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);width:180px;height:60px;background:radial-gradient(ellipse,rgba(0,122,255,.25),transparent 70%);pointer-events:none;"></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-label reveal">Features</div>
+    <h2 class="reveal">Everything you need.<br/>Nothing you don't.</h2>
+    <p class="section-sub reveal">A full suite of remote PC controls, built into one clean app.</p>
+    <div class="features-grid reveal">
+      <div class="feature-card" style="--card-glow:rgba(34,197,94,.08)">
+        <div class="feature-icon" style="background:rgba(34,197,94,.12)">⚡</div>
+        <div class="feature-title">Wake on LAN</div>
+        <div class="feature-desc">Wake your PC from anywhere — at home or across the world. No hardware required beyond your existing router.</div>
+      </div>
+      <div class="feature-card" style="--card-glow:rgba(239,68,68,.08)">
+        <div class="feature-icon" style="background:rgba(239,68,68,.12)">⏻</div>
+        <div class="feature-title">Power Control</div>
+        <div class="feature-desc">Shutdown, restart, sleep, or lock your PC remotely with one tap. Confirm before executing so you never do it by accident.</div>
+      </div>
+      <div class="feature-card" style="--card-glow:rgba(168,85,247,.08)">
+        <div class="feature-icon" style="background:rgba(168,85,247,.12)">🎵</div>
+        <div class="feature-title">Media Controls</div>
+        <div class="feature-desc">Play, pause, skip, and control volume. See what's playing with album art — works with Spotify, YouTube, and any media player.</div>
+      </div>
+      <div class="feature-card" style="--card-glow:rgba(245,158,11,.08)">
+        <div class="feature-icon" style="background:rgba(245,158,11,.12)">📋</div>
+        <div class="feature-title">Clipboard Sync</div>
+        <div class="feature-desc">Copy something on your phone, paste it on your PC. Or grab your PC's clipboard from your phone — instant, bidirectional sync.</div>
+      </div>
+      <div class="feature-card" style="--card-glow:rgba(6,182,212,.08)">
+        <div class="feature-icon" style="background:rgba(6,182,212,.12)">📁</div>
+        <div class="feature-title">File Browser</div>
+        <div class="feature-desc">Browse, search, and download files from your PC directly to your phone. No cloud required — all local.</div>
+      </div>
+      <div class="feature-card" style="--card-glow:rgba(0,122,255,.08)">
+        <div class="feature-icon" style="background:rgba(0,122,255,.12)">📊</div>
+        <div class="feature-title">System Monitor</div>
+        <div class="feature-desc">Live CPU, RAM, GPU, and disk stats streamed to your phone. Know what your PC is doing without being at your desk.</div>
+      </div>
+      <div class="feature-card" style="--card-glow:rgba(239,68,68,.08)">
+        <div class="feature-icon" style="background:rgba(239,68,68,.12)">📸</div>
+        <div class="feature-title">Screenshot</div>
+        <div class="feature-desc">Capture your PC screen and view it on your phone instantly. Tap to zoom, pinch to inspect, save to camera roll.</div>
+      </div>
+      <div class="feature-card" style="--card-glow:rgba(34,197,94,.08)">
+        <div class="feature-icon" style="background:rgba(34,197,94,.12)">🤖</div>
+        <div class="feature-title">Scheduled Events</div>
+        <div class="feature-desc">Set your PC to wake up, run apps, and shut down on a schedule. Automate your whole workflow without lifting a finger.</div>
+      </div>
+      <div class="feature-card" style="--card-glow:rgba(249,115,22,.08)">
+        <div class="feature-icon" style="background:rgba(249,115,22,.12)">🔊</div>
+        <div class="feature-title">Soundboard</div>
+        <div class="feature-desc">Play audio files through your PC speakers from your phone. Great for streaming, content creation, or just messing around.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-inner">
+    <div class="section-label reveal">How it works</div>
+    <h2 class="reveal">Up and running<br/>in under 2 minutes.</h2>
+    <p class="section-sub reveal">No complicated network setup. No port forwarding required for basic use. Just download, scan, and go.</p>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Download the Agent</div>
+        <div class="step-desc">Install the free PCLink Agent on your Windows PC. It runs silently in your system tray — no setup wizard, no account required.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Open the App</div>
+        <div class="step-desc">Download PCLink on your iPhone or Android. Tap the + button to add a new device.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Scan the QR Code</div>
+        <div class="step-desc">A pairing window appears on your PC automatically. Scan the QR code with your phone — they're connected instantly.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Control from anywhere</div>
+        <div class="step-desc">That's it. Your PC is now accessible from your phone over WiFi, mobile data, or any network — securely and privately.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="section-inner">
+    <div class="section-label reveal">Download</div>
+    <h2 class="reveal">Get started for free.</h2>
+    <p class="section-sub reveal">PCLink is free to download. Unlock all features with a one-time Pro upgrade — no subscription, ever.</p>
+    <div class="download-grid reveal">
+      <div class="download-card">
+        <span class="download-card-icon">🖥️</span>
+        <div class="download-card-title">PCLink Agent</div>
+        <div class="download-card-desc">The Windows companion app that runs on your PC. Required to connect your phone. Free, lightweight, and runs in the system tray.</div>
+        <a href="https://github.com/laikxn/PCLink/releases/latest" class="btn-primary" style="font-size:15px;padding:12px 24px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download for Windows
+        </a>
+        <div class="download-card-meta">Windows 10/11 · Free · v1.0.0</div>
+      </div>
+      <div class="download-card">
+        <span class="download-card-icon">📱</span>
+        <div class="download-card-title">PCLink for iPhone</div>
+        <div class="download-card-desc">The iOS app that puts your PC in your pocket. Wake, control, monitor, and automate — all from one beautifully designed app.</div>
+        <div class="store-badge" style="width:fit-content">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--text-sub)"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--text)">App Store</div>
+            <div class="store-badge-coming">Coming soon</div>
+          </div>
+        </div>
+        <div class="download-card-meta">iOS 16+ · Coming soon</div>
+      </div>
+      <div class="download-card">
+        <span class="download-card-icon">🤖</span>
+        <div class="download-card-title">PCLink for Android</div>
+        <div class="download-card-desc">The Android app with the same full feature set as iOS. Wake your PC, control media, sync your clipboard and more.</div>
+        <div class="store-badge" style="width:fit-content">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--text-sub)"><path d="M3.18 23.76c.3.17.65.19.98.06l12.47-6.99-2.54-2.54-10.91 9.47zM.44 1.05C.17 1.36 0 1.83 0 2.44v19.12c0 .61.17 1.08.44 1.39l.07.07 10.71-10.71v-.25L.51.98.44 1.05zM20.55 9.56l-2.84-1.6-2.86 2.86 2.86 2.86 2.86-1.61c.82-.46.82-1.21-.02-1.51zM3.18.24L15.65 7.22l-2.54 2.54L2.2.3c.33-.14.69-.12.98-.06z"/></svg>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--text)">Google Play</div>
+            <div class="store-badge-coming">Coming soon</div>
+          </div>
+        </div>
+        <div class="download-card-meta">Android 10+ · Coming soon</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-label reveal">FAQ</div>
+    <h2 class="reveal">Common questions.</h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can anyone else control my PC?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">No. When you pair your phone, a unique security token is generated and stored only on your device. Every command requires this token — it is never exposed or transmitted outside your encrypted connection. Even someone on your network cannot control your PC without it.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Does PCLink collect any of my data?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">None at all. No analytics, no tracking, no third-party SDKs that collect data. Everything stays between your phone and your PC. We don't have servers that see your commands or files.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Does it work away from home?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">Yes. PCLink connects through a secure relay so it works anywhere — on mobile data, at school, at work. Your PC just needs to be on with the agent running. Wake on LAN from outside your home requires port forwarding on your router, which the app walks you through.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Why doesn't Wake on LAN work?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">Wake on LAN requires a wired Ethernet connection and must be enabled in your PC's BIOS under Power Management. It does not work over Wi-Fi in most cases. Make sure your PC is plugged into power as well.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What does Pro include?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">Pro is a one-time purchase that unlocks: Scheduled Events, Scenes, Custom Actions, File Browser, Media Controls, Clipboard Sync, Type Text, Screenshot, Network Info, File Upload, Soundboard, and multiple devices. No subscription, no hidden fees — pay once and own it forever.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is the agent safe to install?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">Yes. The agent is open source — you can inspect every line of code on GitHub. It runs in your system tray, uses minimal resources, and only responds to commands from your paired phone using your unique security token.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end page-home -->
+
+<!-- ══════════════ SUPPORT PAGE ══════════════ -->
+<div id="page-support" class="page">
+  <div class="page-inner">
+    <h1>Support</h1>
+    <p class="updated">We're here to help.</p>
+
+    <h2>Common Issues</h2>
+    <p><strong style="color:var(--text)">PC shows as offline</strong><br/>Make sure the PCLink Agent is running in your Windows system tray (bottom-right of taskbar). Try right-clicking the tray icon and selecting Restart Agent. Check that both your phone and PC have internet access.</p>
+    <p><strong style="color:var(--text)">Wake on LAN not working</strong><br/>WoL requires a wired Ethernet connection and must be enabled in BIOS under Power Management settings. It does not work over Wi-Fi on most PCs. Your PC also needs to remain plugged into power.</p>
+    <p><strong style="color:var(--text)">Can't pair my device</strong><br/>Make sure the agent is running and showing a QR code. Codes expire after 5 minutes — if it's expired, right-click the tray icon and select Pair / Repair Device to generate a new one. Try entering the 6-digit code manually if the QR scan fails.</p>
+    <p><strong style="color:var(--text)">Commands are slow or not working</strong><br/>Check your internet connection on both your phone and PC. If the PC shows online but commands fail, try restarting the agent from the system tray.</p>
+
+    <h2>Contact</h2>
+    <p>If you're still having trouble, reach out and we'll get back to you as soon as possible.</p>
+    <a href="mailto:support@pclink.app" class="btn-primary" style="display:inline-flex;margin-top:8px;font-size:15px;padding:12px 24px">
+      support@pclink.app
+    </a>
+
+    <h2>Open Source</h2>
+    <p>PCLink is open source. You can browse the code, report issues, or contribute on GitHub.</p>
+    <a href="https://github.com/laikxn/PCLink" class="btn-secondary" style="display:inline-flex;margin-top:8px;font-size:15px;padding:12px 24px" target="_blank">
+      View on GitHub →
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════ PRIVACY PAGE ══════════════ -->
+<div id="page-privacy" class="page">
+  <div class="page-inner">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: May 2025</p>
+    <p>PCLink is designed with your privacy as a core principle. We do not collect, store, transmit, or sell your personal data.</p>
+    <h2>What We Don't Collect</h2>
+    <p>We do not collect your name, email address, location, device identifiers, usage analytics, crash reports, or any other personal information. No data is sent to our servers — because your commands never pass through servers we control.</p>
+    <h2>Local Communication</h2>
+    <p>The app communicates with the PCLink Agent on your PC through an encrypted WebSocket connection relayed through a secure server. The relay server facilitates the connection but does not store, log, or inspect the content of your commands.</p>
+    <h2>Security Tokens</h2>
+    <p>When you pair your phone with a PC, a unique security token is generated and stored locally on your device. This token is used only to authenticate commands. It is never transmitted to any third party.</p>
+    <h2>Third-Party Services</h2>
+    <p>PCLink does not integrate with any analytics platforms, advertising networks, or third-party data processors. No third-party SDKs that collect user data are included in the app.</p>
+    <h2>Data Storage</h2>
+    <p>All app data — paired devices, custom actions, scheduled events, settings — is stored locally on your device using on-device storage. You can delete this data at any time by removing the app.</p>
+    <h2>Children's Privacy</h2>
+    <p>PCLink is not directed at children under 13. We do not knowingly collect information from children.</p>
+    <h2>Changes</h2>
+    <p>If we make material changes to this policy, we will update the date above. We encourage you to review it periodically.</p>
+    <h2>Contact</h2>
+    <p>Questions about this Privacy Policy? Email us at <a href="mailto:support@pclink.app" style="color:var(--accent)">support@pclink.app</a>.</p>
+  </div>
+</div>
+
+<!-- ══════════════ TERMS PAGE ══════════════ -->
+<div id="page-terms" class="page">
+  <div class="page-inner">
+    <h1>Terms of Use</h1>
+    <p class="updated">Last updated: May 2025</p>
+    <p>By downloading or using PCLink, you agree to these Terms. If you do not agree, please do not use the app.</p>
+    <h2>Description</h2>
+    <p>PCLink is a remote PC control application that allows you to send commands to a Windows PC running the PCLink Agent from your mobile device.</p>
+    <h2>Use at Your Own Risk</h2>
+    <p>Commands like shutdown and restart take effect immediately on your PC. You are solely responsible for ensuring commands are sent intentionally. PCLink is not liable for any data loss or other consequences resulting from use of the app.</p>
+    <h2>Permitted Use</h2>
+    <p>You may use PCLink only to control PCs you own or have explicit permission to control. Unauthorized use to access another person's computer without consent may violate applicable law.</p>
+    <h2>No Warranty</h2>
+    <p>The app is provided "as is" without warranty of any kind. We do not warrant that the app will be error-free or uninterrupted.</p>
+    <h2>Limitation of Liability</h2>
+    <p>To the maximum extent permitted by law, PCLink and its developer shall not be liable for any indirect, incidental, or consequential damages arising from your use of the app.</p>
+    <h2>Intellectual Property</h2>
+    <p>All content, design, and code within the app is the intellectual property of PCLink. You may not copy, modify, or reverse engineer any part of the app without prior written permission.</p>
+    <h2>Contact</h2>
+    <p>Questions? Email <a href="mailto:support@pclink.app" style="color:var(--accent)">support@pclink.app</a>.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">PCLink</div>
+      <div class="footer-tagline">Your PC, in your pocket.</div>
+    </div>
+    <div>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#download">Download</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-links">
+        <a href="#" onclick="showPage('support')">Support</a>
+        <a href="#" onclick="showPage('privacy')">Privacy Policy</a>
+        <a href="#" onclick="showPage('terms')">Terms of Use</a>
+        <a href="https://github.com/laikxn/PCLink" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 PCLink. All rights reserved.</span>
+    <span>Made with ♥ for PC enthusiasts everywhere.</span>
+  </div>
+</footer>
+
+<script>
+// Page routing
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name)?.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// FAQ accordion
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.borderBottomColor = window.scrollY > 20 ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.04)';
+});
+</script>
+</body>
+</html>
