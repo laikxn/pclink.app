@@ -69,11 +69,11 @@ nav {
 
 /* ── HERO ── */
 .hero {
-  
-  min-height:100vh; display:flex; flex-direction:column;
+  min-height:100vh;
+  display:flex; flex-direction:column;
   align-items:center; justify-content:center;
   text-align:center;
-  padding:140px 24px 80px;
+  padding:100px 24px 80px;
   position:relative; overflow:hidden;
 }
 .hero-glow {
@@ -182,7 +182,7 @@ h1 span { color:var(--accent); }
   border-radius:38px;
   overflow:hidden;
   aspect-ratio:9/19;
-  min-height:100vh; display:flex; flex-direction:column;
+  display:flex; flex-direction:column;
 }
 .phone-status-bar {
   height:40px;
@@ -191,7 +191,7 @@ h1 span { color:var(--accent); }
   padding:0 22px;
   font-size:13px; font-weight:600;
 }
-.phone-content { flex:1; padding:14px; min-height:100vh; display:flex; flex-direction:column; gap:9px; }
+.phone-content { flex:1; padding:14px; display:flex; flex-direction:column; gap:9px; }
 .phone-top-bar {
   display:flex; justify-content:space-between; align-items:center;
   padding:4px 0 8px;
@@ -201,7 +201,7 @@ h1 span { color:var(--accent); }
   background:linear-gradient(135deg,#4c1d95,#3b0764);
   border-radius:18px; padding:16px;
   position:relative; overflow:hidden;
-  min-height:100vh; display:flex; flex-direction:column;
+  display:flex; flex-direction:column;
   align-items:center; justify-content:center;
   text-align:center; min-height:90px; gap:4px;
 }
@@ -219,7 +219,7 @@ h1 span { color:var(--accent); }
 .phone-tile {
   background:#1c2130;
   border-radius:14px; padding:12px 12px 10px;
-  min-height:100vh; display:flex; flex-direction:column; gap:5px;
+  display:flex; flex-direction:column; gap:5px;
 }
 .phone-tile-icon {
   width:28px; height:28px; border-radius:8px;
@@ -354,7 +354,7 @@ h2 {
 
 /* ── FAQ ── */
 #faq { background:var(--surface); }
-.faq-list { min-height:100vh; display:flex; flex-direction:column; gap:2px; }
+.faq-list { display:flex; flex-direction:column; gap:2px; }
 .faq-item {
   background:var(--bg);
   border:1px solid var(--border);
@@ -412,7 +412,7 @@ footer {
   margin-bottom:8px;
 }
 .footer-tagline { font-size:13px; color:var(--text-muted); }
-.footer-links { min-height:100vh; display:flex; flex-direction:column; gap:10px; }
+.footer-links { display:flex; flex-direction:column; gap:10px; }
 .footer-links a { font-size:14px; color:var(--text-sub); transition:color .2s; }
 .footer-links a:hover { color:var(--text); }
 .footer-bottom {
